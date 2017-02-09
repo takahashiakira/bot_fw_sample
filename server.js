@@ -1,7 +1,20 @@
-const http = require('http')
-const port = process.env.PORT || 1337;
+const restify = require('restify');
+const builder = require('botbuilder');
 
-http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello World\n');
-}).listen(port);
+// Setup Restify Server
+const server = restify.createServer();
+server.listen(process.env.port || process.env.PORT || 3978, () => {
+  console.log('%s listening to %s', server.name, server.url);
+});
+
+// Create chat bot
+const connector = new builder.ChatConnector({
+  appId: process.env.MS_APP_ID,
+  appPassword: process.env.MS_APP_PW
+});
+const bot = new builder.UniversalBot(connector);
+server.post('/api/messages', connector.listen());
+
+bot.dialog('/', (session) => {
+  session.send('Hello World');
+});
