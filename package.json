@@ -6,10 +6,10 @@
   "license": "MIT",
   "dependencies": {
     "botbuilder": "^3.6.0",
-    "restify": "^4.3.0"
+    "restify": "^4.3.0",
+    "dotenv": "^4.0.0"
   },
   "devDependencies": {
-    "dotenv": "^4.0.0",
     "mocha": "^2.4.5",
     "eslint": "^3.15.0",
     "eslint-config-google": "^0.7.1"
